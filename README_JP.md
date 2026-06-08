@@ -70,6 +70,10 @@ Personal / Commercial 使用可。
 
 ## 更新履歴
 
+### v1.2
+
+* 実効解像度（Resolution%適用後の実際のpx数）を表示
+
 ### v1.1
 
 * X/Y解像度入れ替えボタンを追加

@@ -1,7 +1,7 @@
 bl_info = {
     "name": "Auto Aspect Lock (解像度比率固定)",
     "author": "DaHi64",
-    "version": (1, 1),
+    "version": (1, 2),
     "blender": (3, 0, 0),
     "location": "Output Properties > Format",
     "description": "解像度XまたはYを変更した際、アスペクト比を維持して自動追従させます。",
@@ -81,6 +81,12 @@ def draw_aspect_lock_ui(self, context):
     row = layout.row(align=True)
     row.prop(scene, "use_aspect_lock", text="解像度比率を固定", icon='LOCKED' if scene.use_aspect_lock else 'UNLOCKED')
     row.operator("render.dh_swap_resolution", text="", icon='ARROW_LEFTRIGHT')
+
+    r = scene.render
+    pct = r.resolution_percentage
+    eff_x = int(r.resolution_x * pct / 100)
+    eff_y = int(r.resolution_y * pct / 100)
+    layout.label(text=f"実効解像度: {eff_x} × {eff_y} px  ({pct}%)")
 
 
 def register():

@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.2.0] - 2026-06-08
+
+### Added
+- Display effective pixel resolution (actual px count considering Resolution %)
+
 ## [1.1.0] - 2026-06-08
 
 ### Added

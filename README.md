@@ -9,6 +9,7 @@ A Blender add-on that automatically maintains the aspect ratio when changing ren
 * Automatically locks the aspect ratio between resolution X and Y
 * Change either X or Y — the other updates to match
 * One-click X/Y swap button
+* Displays effective pixel resolution (considering Resolution %)
 * Toggle on/off from the Output Properties panel
 * Works with Blender's native Format resolution UI
 * Lightweight, no external dependencies
@@ -39,6 +40,7 @@ Blender 3.0 / 4.x / 5.x compatible
 3. Change either `Resolution X` or `Resolution Y`
 4. The other value updates automatically to maintain the aspect ratio
 5. Use the `⇄` button to swap X and Y values instantly
+6. The effective pixel resolution is shown below the toggle (updated in real time)
 
 ### Note
 - The aspect ratio is captured when you enable the lock
