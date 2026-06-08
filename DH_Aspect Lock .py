@@ -1,7 +1,7 @@
 bl_info = {
     "name": "Auto Aspect Lock (解像度比率固定)",
     "author": "DaHi64",
-    "version": (1, 0),
+    "version": (1, 1),
     "blender": (3, 0, 0),
     "location": "Output Properties > Format",
     "description": "解像度XまたはYを変更した際、アスペクト比を維持して自動追従させます。",
@@ -59,17 +59,32 @@ def update_lock_toggle(self, context):
     if self.use_aspect_lock:
         init_ratio(context.scene)
 
+class DH_OT_swap_resolution(bpy.types.Operator):
+    bl_idname = "render.dh_swap_resolution"
+    bl_label = "X/Yを入れ替え"
+    bl_description = "解像度XとYを入れ替えます"
+    bl_options = {'REGISTER', 'UNDO'}
+
+    def execute(self, context):
+        scene = context.scene
+        x = scene.render.resolution_x
+        y = scene.render.resolution_y
+        scene.render.resolution_x = y
+        scene.render.resolution_y = x
+        return {'FINISHED'}
+
 # UIを「出力プロパティ」の「フォーマット」パネルに追加
 def draw_aspect_lock_ui(self, context):
     layout = self.layout
     scene = context.scene
     
-    # 標準の解像度設定のすぐ下、あるいは隣に配置しやすいように
     row = layout.row(align=True)
     row.prop(scene, "use_aspect_lock", text="解像度比率を固定", icon='LOCKED' if scene.use_aspect_lock else 'UNLOCKED')
+    row.operator("render.dh_swap_resolution", text="", icon='ARROW_LEFTRIGHT')
 
 
 def register():
+    bpy.utils.register_class(DH_OT_swap_resolution)
     bpy.types.Scene.use_aspect_lock = bpy.props.BoolProperty(
         name="Use Aspect Lock",
         description="解像度XとYの比率を固定します",
@@ -90,6 +105,7 @@ def unregister():
         
     bpy.types.RENDER_PT_format.remove(draw_aspect_lock_ui)
     del bpy.types.Scene.use_aspect_lock
+    bpy.utils.unregister_class(DH_OT_swap_resolution)
 
 if __name__ == "__main__":
     register()

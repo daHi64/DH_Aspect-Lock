@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ---
 
+## [1.1.0] - 2026-06-08
+
+### Added
+- X/Y resolution swap button next to the lock toggle
+
 ## [1.0.0] - 2026-05-30
 
 ### Added
